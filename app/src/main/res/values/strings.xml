@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Pocket Guide</string>
+    <string name="subtitle">Vila Suconasa</string>
+    <string name="call">CALL</string>
+    <string name="open_map">OPEN ON MAP</string>
+    <string name="back">BACK</string>
+
+    <string name="mechanic">Auto Mechanics</string>
+    <string name="snack_bar">Snack Bar</string>
+    <string name="gym">Gym</string>
+    <string name="supermarket">SuperMarket</string>
+    <string name="theatre">Theatre</string>
+    <string name="food_industry">Food Industry</string>
+</resources>

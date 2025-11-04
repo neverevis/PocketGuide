@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Guia do Bairro</string>
+    <string name="subtitle">Vila Suconasa</string>
+    <string name="call">LIGAR</string>
+    <string name="open_map">ABRIR NO MAPA</string>
+    <string name="back">VOLTAR</string>
+
+    <string name="mechanic">Auto Mecânica</string>
+    <string name="snack_bar">Lanchonete</string>
+    <string name="gym">Academia</string>
+    <string name="supermarket">Supermercado</string>
+    <string name="theatre">Teatro</string>
+    <string name="food_industry">Indústria Alimentícia</string>
+</resources>
