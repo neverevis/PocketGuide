@@ -9,7 +9,7 @@
 
 ## Descrição do Projeto
 
-O **Guia Pocket - Bairro X** é um aplicativo móvel desenvolvido para divulgar pequenos serviços e comércios locais do bairro X, como lanchonetes, academias, oficinas e supermercados.
+O **Guia Pocket** é um aplicativo móvel desenvolvido para divulgar pequenos serviços e comércios locais do bairro, como lanchonetes, academias, oficinas e supermercados.
 
 O app permite ao usuário:
 
