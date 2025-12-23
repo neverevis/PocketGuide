@@ -3,7 +3,7 @@ package com.milan.pocketguide.model
 import java.io.Serializable
 
 data class Item(
-    val picture: Int,
+    val picture: String,
     val title: String,
     val category: String,
     val address: String,

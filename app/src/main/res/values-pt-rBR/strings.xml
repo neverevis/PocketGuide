@@ -5,6 +5,9 @@
     <string name="open_map">ABRIR NO MAPA</string>
     <string name="back">VOLTAR</string>
 
+    <string name="search_hint">Pesquisar pr nome...</string>
+    <string name="add_new">adicionar novo</string>
+
     <string name="mechanic">Auto Mecânica</string>
     <string name="snack_bar">Lanchonete</string>
     <string name="gym">Academia</string>

@@ -140,3 +140,36 @@ git clone https://github.com/neverevis/PocketGuide
 2. Abra o projeto no **Android Studio**.
 3. Conecte um dispositivo ou emulador.
 4. Clique em **Run** para instalar e executar o app.
+
+---
+
+## Atualizações da 2ª Parte (implementadas)
+
+### Requisitos Funcionais
+
+1. Lista de Serviços
+   - **[RF1-1]** Refatorada para **RecyclerView** com a lista de locais salvos.
+   - **[RF1-2]** Cada item exibe imagem, nome do serviço e categoria com layout personalizado.
+   - **[RF1-3]** Adicionado **EditText** para filtrar locais por nome em tempo real.
+
+2. Cadastro
+   - **[RF2-1]** Novo local pode ser adicionado em uma nova tela (**CadastroActivity** / `AddItemActivity`) via botão.
+   - **[RF2-2]** Formulário permite:
+     - Escolher imagem da galeria usando **ActivityResult** (`OpenDocument`).
+     - Inserir os dados mostrados na tela de detalhes.
+
+3. Persistência de Dados
+   - **[RF3-1]** Persistência implementada com **Room** (DAO/Database/Repository) e **Flow**.
+   - **[RF3-2]** Imagem armazenada via **URI** (como `String`) no banco.
+
+### Requisitos Não Funcionais
+
+* **[RNF1]** Desenvolvido em **Kotlin**, usando **ViewBinding** em todas as telas e **RecyclerView**.
+* **[RNF2]** **ConstraintLayout** adotado como base para todas as telas.
+* **[RNF3]** Boas práticas: nomes semânticos e organização por pacotes (`ui`, `model`, `data`, `adapter`, etc.).
+
+---
+
+## Créditos
+
+IFSP - Campus Araraquara, disciplina ARQDMO1.

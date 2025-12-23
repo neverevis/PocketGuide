@@ -1,41 +1,71 @@
 package com.milan.pocketguide.adapter
 
-import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.milan.pocketguide.R
 import com.milan.pocketguide.databinding.ListItemBinding
 import com.milan.pocketguide.model.Item
 
 class ItemAdapter(
-    private val context: Context,
-    private val lista: List<Item>
-) : ArrayAdapter<Item>(context, 0, lista) {
+    private val onItemClick: (Item) -> Unit
+) : ListAdapter<Item, ItemAdapter.ViewHolder>(ItemDiffCallback()) {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val binding: ListItemBinding
-        val itemView: View
-
-        if (convertView == null) {
-            binding = ListItemBinding.inflate(LayoutInflater.from(context), parent, false)
-            itemView = binding.root
-            itemView.tag = binding
-        } else {
-            itemView = convertView
-            binding = itemView.tag as ListItemBinding
-        }
-
-        val contato = lista[position]
-
-        binding.imgPicture.setImageResource(contato.picture)
-        binding.tvTitle.text = contato.title
-        binding.tvCategory.text = contato.category
-
-        return itemView
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
+        holder.itemView.setOnClickListener { onItemClick(item) }
+    }
+
+    class ViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Item) {
+            val ctx = binding.imgPicture.context
+            val pic = item.picture
+            val uri = runCatching { Uri.parse(pic) }.getOrNull()
+
+            if (uri?.scheme == "android.resource") {
+                // carrega resource drawable direto
+                val segments = uri.pathSegments
+                val resName = when {
+                    segments.size >= 2 && segments[0] == "drawable" -> segments[1]
+                    segments.isNotEmpty() -> segments.last()
+                    else -> pic.substringAfterLast('/').trim()
+                }
+                val resId = ctx.resources.getIdentifier(resName, "drawable", ctx.packageName)
+                if (resId != 0) {
+                    binding.imgPicture.setImageResource(resId)
+                } else {
+                    binding.imgPicture.setImageResource(R.drawable.ic_launcher_foreground)
+                }
+            } else {
+                // carrega uri da galeria ou arquivo com glide
+                Glide.with(ctx)
+                    .load(pic)
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.ic_launcher_foreground)
+                    .into(binding.imgPicture)
+            }
+            binding.tvTitle.text = item.title
+            binding.tvCategory.text = item.category
+        }
+    }
+
+    class ItemDiffCallback : DiffUtil.ItemCallback<Item>() {
+        override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
+            return oldItem.title == newItem.title
+        }
+
+        override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+            return oldItem == newItem
+        }
+    }
 }

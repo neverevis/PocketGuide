@@ -5,6 +5,9 @@
     <string name="open_map">OPEN ON MAP</string>
     <string name="back">BACK</string>
 
+    <string name="search_hint">Search by name...</string>
+    <string name="add_new">add new</string>
+
     <string name="mechanic">Auto Mechanics</string>
     <string name="snack_bar">Snack Bar</string>
     <string name="gym">Gym</string>
